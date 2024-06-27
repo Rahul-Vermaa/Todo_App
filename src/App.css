@@ -1,38 +1,92 @@
-.App {
+.navbar{
+border: 1px solid grey;
+border-radius: 13px;
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+}
+.navbar-brand{
+  position: relative;
+left: 600px;
+}
+
+.Home-Container{
+text-align: center;
+}
+.list-group-item {
+  width: 180px;
+
+}
+.Container-Page{
+  background-color: thistle;
+ height: 800px;
+ width: 500px;
+}
+.Completed-Todo{
+  position: relative;
+  left: 900px;
+}
+#Unique{
+  position: relative;
+  right: -1200px;
+  top: 100px;
+
+}
+.Layout{
+  top: -800px;
+  background-color: rgb(255, 255, 255);
+align-items: center;
+text-align: center;
+border: 1px solid grey;
+position: relative;
+height: 60px;
+border-radius: 13px;
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.add-todo-icon{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.home-container{
+  text-align: center;
+  position: relative;
+  left: 750px;
+  max-width: 250px;
+  max-height: 550px;
+  overflow-y: scroll;
+  top: -120px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.list-group-item{
+ margin-bottom: 20px;
+  border-radius: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.navbar-brand{
+  text-align: center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.Background-section{
+  background-color: rgb(131, 131, 162);
+height: 656px;
+max-width: 200px;
+}
+.Image-text{
+  color: rgb(255, 255, 255);
+  position: relative;
+  top: 230px;
+  font-size: 20px;
+  right: -50px
+}
+.Image-Home{
+  width: 120px; 
+  height: 120px; 
+  position: relative;
+  top: 200px;
+  right: -50px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.mb-4{
+  position: relative;
+  left: 80px;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

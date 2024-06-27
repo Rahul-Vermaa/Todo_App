@@ -68,3 +68,131 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+import React, { useContext } from 'react';
+import useTaskData from './useTaskData'; // Adjust the path as necessary
+import FetchData from './FetchData';
+
+const Home = () => {
+  const { data, status, updateStatus } = useTaskData();
+  // You can useContext to get location if needed
+  // const { location } = useContext(DataContext);
+
+  return (
+    <div>
+      <FetchData/>
+      <h1>Tasks</h1>
+      <div>
+        <button onClick={() => updateStatus(1)}>All Tasks</button>
+        <button onClick={() => updateStatus(2)}>Completed Tasks</button>
+        <button onClick={() => updateStatus(0)}>Deleted Tasks</button>
+      </div>
+      <ul>
+        {data.rows.map((task) => (
+          <li key={task.id}>{task.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+// Home.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import PaginationComponent from './PaginationComponent';
+import Add from './Add';
+import Delete from './Delete';
+import Edit from './Edit';
+
+function Home() {
+  const [data, setData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [totalCount, setTotalCount] = useState(0);
+  const [hasNext, setHasNext] = useState(true);
+  const [hasPrevious, setHasPrevious] = useState(false);
+
+  async function getData(pageNumber) {
+    try {
+      const start = (pageNumber - 1) * itemsPerPage + 1;
+      const res = await axios.get(`http://139.59.47.49:4004/api/tasks?limit=${itemsPerPage}&start=${start}`);
+      setData(res.data.rows);
+      setTotalCount(res.data.count);
+      setHasNext(res.data.count > pageNumber * itemsPerPage);
+      setHasPrevious(pageNumber > 1);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    getData(pageNumber);
+  }, [pageNumber]);
+
+  const handleNext = () => {
+    setPageNumber(pageNumber + 1);
+  };
+
+  const handlePrevious = () => {
+    setPageNumber(pageNumber - 1);
+  };
+
+  const handlePageChange = (selectedPage) => {
+    setPageNumber(selectedPage);
+  };
+
+  const handleAdd = () => {
+    getData(pageNumber);
+  };
+
+  const handleDelete = (deletedTaskId) => {
+    setData(data.filter(item => item.id !== deletedTaskId)); // Remove deleted task from state
+  };
+
+  const handleEdit = () => {
+    getData(pageNumber); 
+  };
+
+  return (
+    <>
+      <div className='Home-Container'>
+        {data.map((item, index) => (
+          <div key={index}>
+            <p>Task Name: {item.task_name}</p>
+            <p>Date: {item.date}</p>
+            <Delete taskId={item.id} onDelete={handleDelete} />
+            <Edit task={item} onEdit={handleEdit} />
+            <hr />
+          </div>
+        ))}
+      </div>
+      <Add onAdd={handleAdd} />
+      <div>
+        {hasPrevious && (
+          <button className='' onClick={handlePrevious}>&lt;</button>
+        )}
+        {hasNext && (
+          <button onClick={handleNext}>&gt;</button>
+        )}
+      </div>
+      <PaginationComponent
+        pageCount={Math.ceil(totalCount / itemsPerPage)}
+        onPageChange={handlePageChange}
+      />
+    </>
+  );
+}
+
+export default Home;
