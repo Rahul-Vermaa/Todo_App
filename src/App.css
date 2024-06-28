@@ -2,7 +2,6 @@
 border: 1px solid grey;
 border-radius: 13px;
 box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-
 }
 .navbar-brand{
   position: relative;
@@ -88,5 +87,5 @@ max-width: 200px;
 .mb-4{
   position: relative;
   left: 80px;
-
 }
+

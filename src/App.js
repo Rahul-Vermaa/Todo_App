@@ -7,6 +7,7 @@ import Sidebar from './Sidebar';
 
 function App() {
     return (
+        
         <Router>
             <div>
             <Sidebar />
@@ -17,6 +18,7 @@ function App() {
                 </Routes>
             </div>
         </Router>
+        
     );
 }
 
