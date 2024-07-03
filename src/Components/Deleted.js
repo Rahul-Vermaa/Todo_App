@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TodoItem from './TodoItem';
+import "./App.css";
 
 const Deleted = () => {
   const [deletedTasks, setDeletedTasks] = useState([]);
@@ -18,13 +19,11 @@ const Deleted = () => {
     }
   };
 
-
-  
   return (
-    <div className="container mt-4">
+    <div className="container mt-4" style={{width:"420px", left:'-280px'}}>
       <h2 className="text-center mb-4">Deleted Tasks</h2>
       {deletedTasks.map(task => (
-        <TodoItem key={task.id} task={task} />
+        <TodoItem key={task.id} task={task} page="deleted" /> 
       ))}
     </div>
   );

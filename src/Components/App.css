@@ -84,8 +84,16 @@ max-width: 200px;
   display: block;
 }
 
-.mb-4{
+.mt-4{
+  position: relative;
+  left: 80px;
+width: 1120px;
+}
+.pagination{
   position: relative;
   left: 80px;
 }
-
+.primary{
+  position: relative;
+  left: 80px;
+}

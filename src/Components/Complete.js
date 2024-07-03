@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TodoItem from './TodoItem';
+import './App.css'
+
 
 const Complete = () => {
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -19,11 +21,11 @@ const Complete = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4"  style={{width:"420px", left:'-280px'}}>
       <h2 className="text-center mb-4">Completed Tasks</h2>
       {completedTasks.map(task => (
-        <TodoItem key={task.id} task={task} />
-      ))}
+  <TodoItem key={task.id} task={task} page="complete" />
+))}
     </div>
   );
 };

@@ -16,7 +16,7 @@ const CreateTodo = ({ visible, onCreate, onCancel }) => {
       });
 
       form.resetFields();
-      onCreate(response.data);
+      onCreate();
       message.success('Task created successfully');
     } catch (error) {
       console.error('Error creating task:', error);
@@ -24,7 +24,7 @@ const CreateTodo = ({ visible, onCreate, onCancel }) => {
     }
   };
 
-
+  
   return (
     <Modal
       visible={visible}
